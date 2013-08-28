@@ -760,8 +760,13 @@ status_t Parameters::initialize(const CameraMetadata *info) {
     params.set(CameraParameters::KEY_RECORDING_HINT,
             CameraParameters::FALSE);
 
+#ifndef QCOM_LEGACY_CAM_PARAMS
     params.set(CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED,
             CameraParameters::TRUE);
+#else
+    params.set(CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED,
+            CameraParameters::FALSE);
+#endif
 
     videoStabilization = false;
     params.set(CameraParameters::KEY_VIDEO_STABILIZATION,
